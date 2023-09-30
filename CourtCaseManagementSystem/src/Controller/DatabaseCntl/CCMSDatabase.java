@@ -42,8 +42,8 @@ import java.time.ZonedDateTime;
  *
  */
 public class CCMSDatabase {
-    public String userId;
-    public String passwd;
+    private String userId;
+    private String passwd;
     boolean isUserAuthorized;
 
     /**

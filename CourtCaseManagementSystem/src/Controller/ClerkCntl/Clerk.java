@@ -5,6 +5,10 @@ import Controller.Exception.CourtCaseMgmtSystemException;
 import java.time.ZonedDateTime;
 
 /**
+ * Tiffany Dove
+ * IST-412
+ * 09/17/2023
+ *
  * <p>This class contains information related to Clerks.</p>
  *
  * <p>
@@ -61,6 +65,16 @@ public class Clerk {
      */
     public Clerk(String userId, String passwd) throws CourtCaseMgmtSystemException {
 
+        authorizeUser(userId, passwd);
+    }
+
+    /**
+     * This method checks to see whether the user is authorized.
+     * @param userId - UserId for user to authenticate
+     * @param passwd - Password for user to authenticate
+     * @throws CourtCaseMgmtSystemException - Throws an exception
+     */
+    private void authorizeUser(String userId, String passwd) throws CourtCaseMgmtSystemException {
         ccmsDatabase = new CCMSDatabase(userId, passwd);
         boolean userAuthorized = ccmsDatabase.isUserAuthorized(userId, passwd);
         if (!userAuthorized) {
