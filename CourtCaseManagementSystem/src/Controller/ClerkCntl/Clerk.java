@@ -1,8 +1,11 @@
 package Controller.ClerkCntl;
 
+import Controller.CaseCntl.Cases;
 import Controller.DatabaseCntl.CCMSDatabase;
 import Controller.Exception.CourtCaseMgmtSystemException;
+import Controller.UserCntl.User;
 import java.time.ZonedDateTime;
+import java.util.List;
 
 /**
  * Tiffany Dove
@@ -49,13 +52,14 @@ import java.time.ZonedDateTime;
  * </p>
  *
  */
-public class Clerk {
+public class Clerk extends User {
     String userId = null;
     String passwd;
     CCMSDatabase ccmsDatabase;
     private String caseNumber;
     private String partyName;
     private ZonedDateTime date;
+   List<Cases> casesList;
 
     /**
      * This is the Clerk class
@@ -88,15 +92,14 @@ public class Clerk {
      * @return returns true if successful
      */
     public boolean searchSpecificCase() {
-        ccmsDatabase.searchDatabase(caseNumber, partyName, date);
-        return true;
+        return ccmsDatabase.searchDatabase(casesList, caseNumber);
     }
 
     /**
      * This method will allow the user to view case details
      */
-    public void viewCaseDetails() {
-        String displayCaseDetails = ccmsDatabase.displayCaseDetails();
+    public void viewCaseDetails() throws CourtCaseMgmtSystemException {
+        List<Cases> cases = ccmsDatabase.displayCaseDetails(casesList, caseNumber);
     }
 
     /**
@@ -113,6 +116,8 @@ public class Clerk {
      * This method updates the case document list
      */
     public void updateCaseDocumentList(){}
+
+    public void linkDocumentToCase(){}
 
 }
 
