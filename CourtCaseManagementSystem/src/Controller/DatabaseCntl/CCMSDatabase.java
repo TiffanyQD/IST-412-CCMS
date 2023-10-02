@@ -1,10 +1,7 @@
 package Controller.DatabaseCntl;
 
-import Controller.CaseCntl.Cases;
 import Controller.Exception.CourtCaseMgmtSystemException;
 import java.time.ZonedDateTime;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * <p>This class will be used to house the CCMSDatabase information.</p>
@@ -47,9 +44,6 @@ import java.util.List;
 public class CCMSDatabase {
     private String userId;
     private String passwd;
-    private String healthStatus;
-    private ZonedDateTime lastBackupDate;
-    private ZonedDateTime lastUpdateDate;
     boolean isUserAuthorized;
 
     /**
@@ -135,7 +129,7 @@ public class CCMSDatabase {
     }
 
     /**
-     * This method will be used to update the database
+     * This method will be used to udpate the database
      * @return return true if the database was updated up success
      */
     public boolean updateDatabase(){
@@ -144,38 +138,25 @@ public class CCMSDatabase {
 
     /**
      * This method will be used to search the database for a specific case.
-     *
-     * @param caseNumber    - Case Number to search for.
-     * @param partyName     - Party name to search for.
+     * @param caseNumber - Case Number to search for.
+     * @param partyName - Party name to search for.
      * @param zonedDateTime - Thread proof date to search for
      * @return - returns true if successful
      */
-    public boolean searchDatabase(List<Cases> casesList, String caseNumber) {
-        boolean blnContainsCaseNumber = false;
-        for (Cases cases : casesList) {
-            if (cases.getCaseNumber().equals(caseNumber)) {
-                return true;
-            }
-        }
-        return false;
+    public boolean searchDatabase(String caseNumber, String partyName, ZonedDateTime zonedDateTime) {
+        return true;
     }
 
     /**
      * This method will display matching court cases.
-     *
      * @return - returns a string of matching court cases.
      * @throws CourtCaseMgmtSystemException
      */
-    public List<Cases> displayCaseDetails(List<Cases> casesList, String caseNumber) throws CourtCaseMgmtSystemException {
-        List<Cases> matchingCasesList = new LinkedList<>();
-        for (Cases cases : casesList) {
-            if (cases.getCaseNumber().equals(caseNumber)) {
-                matchingCasesList.add(cases);
-                System.out.println("cases = " + cases.toString());
-            } else {
-                System.out.println("No Records Match !!!");
-            }
-        }
-        return matchingCasesList;
+    public String displayMatchingCases() throws CourtCaseMgmtSystemException {
+        return "Display Matching Cases";
+    }
+
+    public String displayCaseDetails() {
+        return "Display Case Details";
     }
 }

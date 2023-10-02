@@ -1,11 +1,8 @@
 package Controller.CivilianCntl;
 
-import Controller.CaseCntl.Cases;
 import Controller.DatabaseCntl.CCMSDatabase;
 import Controller.Exception.CourtCaseMgmtSystemException;
-import Controller.UserCntl.User;
 import java.time.ZonedDateTime;
-import java.util.List;
 
 /**
  * Tiffany Dove
@@ -49,14 +46,13 @@ import java.util.List;
  * </p>
  *
  */
-public class Civilian extends User {
+public class Civilian {
     String userId = null;
     String passwd;
     CCMSDatabase ccmsDatabase = null;
     private String caseNumber;
     private String partyName;
     private ZonedDateTime date;
-    List<Cases> casesList;
 
     /**
      * This is the Judge class
@@ -89,14 +85,15 @@ public class Civilian extends User {
      * @return returns true if successful
      */
     public boolean searchSpecificCase() {
-        return ccmsDatabase.searchDatabase(casesList, caseNumber);
+        ccmsDatabase.searchDatabase(caseNumber, partyName, date);
+        return true;
     }
 
     /**
      * This method will allow the user to view case details
      */
-    public void viewCaseDetails() throws CourtCaseMgmtSystemException {
-        List<Cases> cases = ccmsDatabase.displayCaseDetails(casesList, caseNumber);
+    public void viewCaseDetails() {
+        String displayCaseDetails = ccmsDatabase.displayCaseDetails();
     }
 
     /**
